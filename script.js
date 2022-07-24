@@ -24,14 +24,12 @@ function operate(a, b, operator) {
 }
 
 let inputNum = '';
-let inputOperator = '';
 let inputs = [];
 
 function displayNum() {
     for (const number of numbers) {
         number.addEventListener('click', () => {
             inputNum += number.id;
-            console.log(inputNum);
             display.textContent += number.textContent;
         })
 
@@ -41,10 +39,8 @@ function displayNum() {
 function displayOperator() {
     for (const operate of operators) {
         operate.addEventListener('click', () => {
-            inputOperator += operate.id;
             inputs.push(inputNum);
-            inputs.push(inputOperator);
-            inputOperator = '';
+            inputs.push(operate.id);
             inputNum = '';
             console.log(inputs);
 
@@ -57,9 +53,8 @@ function displayOperator() {
 function clear() {
     clearBtn.addEventListener('click', () => {
         inputNum = '';
-        inputOperator = '';
         inputs = [];
-        console.log(inputNum);
+        console.log(inputs);
         display.textContent = "";
     })
 }
