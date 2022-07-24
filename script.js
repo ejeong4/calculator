@@ -23,9 +23,15 @@ function operate(a, b, operator) {
     operator(a, b);
 }
 
+let inputNum = '';
+let inputOperator = '';
+let inputs = [];
+
 function displayNum() {
     for (const number of numbers) {
         number.addEventListener('click', () => {
+            inputNum += number.id;
+            console.log(inputNum);
             display.textContent += number.textContent;
         })
 
@@ -33,9 +39,16 @@ function displayNum() {
 }
 
 function displayOperator() {
-    for (const operator of operators) {
-        operator.addEventListener('click', () => {
-            display.textContent += ` ${operator.textContent} `;
+    for (const operate of operators) {
+        operate.addEventListener('click', () => {
+            inputOperator += operate.id;
+            inputs.push(inputNum);
+            inputs.push(inputOperator);
+            inputOperator = '';
+            inputNum = '';
+            console.log(inputs);
+
+            display.textContent += ` ${operate.textContent} `;
         })
 
     }
@@ -43,6 +56,10 @@ function displayOperator() {
 
 function clear() {
     clearBtn.addEventListener('click', () => {
+        inputNum = '';
+        inputOperator = '';
+        inputs = [];
+        console.log(inputNum);
         display.textContent = "";
     })
 }
