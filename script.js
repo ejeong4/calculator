@@ -73,7 +73,11 @@ function calculate() {
     answer = operate(inputs[0], inputs[2], inputs[1]);
     inputs = [];
     inputs.push(answer);
-    display.textContent = answer.toFixed(1);
+    if (display.textContent.length > 8) {
+        display.textContent = 'Too long';
+    } else {
+        display.textContent = answer.toFixed(1);
+    }
 }
 
 enterBtn.addEventListener('click', () => {
@@ -90,6 +94,7 @@ clearBtn.addEventListener('click', () => {
     numbers.forEach((num) => num.disabled = false);
     operators.forEach((op) => op.disabled = false);
     enterBtn.disabled = false;
+    inputNum = "";
     inputs = [];
     display.textContent = "";
 })
