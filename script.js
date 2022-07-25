@@ -6,7 +6,7 @@ const clearBtn = document.querySelector('.buttons #Clear');
 const enterBtn = document.querySelector('.buttons #equals')
 const body = document.querySelector('body');
 
-let inputNum;
+let inputNum = "";
 let inputs = [];
 let answer;
 
@@ -39,7 +39,7 @@ function operate(a, b, operator) {
 function displayNum() {
     for (const number of numbers) {
         number.addEventListener('click', () => {
-            inputNum = number.id;
+            inputNum += number.id;
             display.textContent += number.textContent;
         })
     }
@@ -50,6 +50,7 @@ function displayOperator() {
     for (const op of operators) {
         op.addEventListener('click', () => {
             inputs.push(parseInt(inputNum));
+            inputNum = '';
             if (inputs.length >= 3) calculate();
             inputs.push(op.id);
             display.textContent += ` ${op.textContent} `;
@@ -68,6 +69,7 @@ function calculate() {
 
 enterBtn.addEventListener('click', () => {
     inputs.push(parseInt(inputNum));
+    console.log(inputs);
     calculate();
     numbers.forEach((num) => num.disabled = true);
     operators.forEach((op) => op.disabled = true);
