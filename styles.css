@@ -1,12 +1,31 @@
+@font-face {
+    font-family: 'digital';
+    src: url(fonts/digital-7.ttf);
+    font-weight: 'Ultra Light';
+}
+
+@font-face {
+    font-family: 'avenir-bold';
+    src: url(fonts/Avenir\ Next.ttc);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     display: flex;
 }
 
 h1 {
     text-align: center;
-    margin: 300px auto 0 auto;
+    margin: 300px 150px 0 auto;
     font-size: 102px;
     text-transform: lowercase;
+    font-family: 'avenir-bold', sans-serif;
+    color: #e6e6e6;
+    text-decoration: underline #faf1ca;
 }
 
 .calculator {
@@ -15,21 +34,33 @@ h1 {
     flex-direction: column;
     width: 450px;
     height: 550px;
-    background-color: gray;
+    background-color: rgb(255, 255, 255);
     padding: 10px;
+    box-shadow: 0 3px 4px 2px #ebebeb;
 }
 
 .display {
-    height: 150px;
-    background-color: burlywood;
-    text-align: right;
+    height: 100px;
     margin: 2px;
+    background-color: #f5f5f5;
+    text-align: right;
+    font-family: 'digital', sans-serif;
+    font-size: 108px;
+    padding-top: 50px;
+    color: #dadada;
 }
 
 .buttons {
     height: 400px;
     margin: 10px 2px 2px 2px;
-    background-color: burlywood;
     display: grid;
-    grid-template-columns: repeat(4, 112.5px);
+    grid-template-columns: repeat(4, 111.5px);
+}
+
+button {
+    border: 0 none;
+    background-color: #f5f5f5;
+    color: #dadada;
+    font-family: 'avenir-bold', sans-serif;
+    font-size: 36px;
 }

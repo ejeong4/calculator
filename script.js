@@ -53,7 +53,7 @@ function displayOperator() {
             inputNum = '';
             if (inputs.length >= 3) calculate();
             inputs.push(op.id);
-            display.textContent += ` ${op.textContent} `;
+            display.textContent += `${op.textContent}`;
             console.log(inputs);
         })
     }
