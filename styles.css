@@ -36,7 +36,7 @@ h1 {
     height: 550px;
     background-color: rgb(255, 255, 255);
     padding: 10px;
-    box-shadow: 0 7px 10px 1px #e2e2e2;
+    box-shadow: 0 8px 15px 1px #e2e2e2;
 }
 
 .display {
@@ -68,4 +68,24 @@ button {
 .operator {
     background: #faf1ca;
     color: #cccccc;
+}
+
+button.hover {
+    background-color: #e2edf7;
+    color: white;
+}
+
+button.click {
+    background-color: #d8e3ee;
+    color: #fafafa;
+}
+
+.operator.right-hover {
+    background-color: #ffe2d2;
+    color: white;
+}
+
+.operator.right-click {
+    background-color: #f5d9c9;
+    color: #fafafa;
 }

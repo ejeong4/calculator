@@ -5,6 +5,7 @@ const operators = document.querySelectorAll('.buttons .operator');
 const clearBtn = document.querySelector('.buttons #Clear');
 const enterBtn = document.querySelector('.buttons #equals')
 const body = document.querySelector('body');
+const allButtons = document.querySelectorAll('button');
 
 let inputNum = "";
 let inputs = [];
@@ -40,6 +41,7 @@ function displayNum() {
     for (const number of numbers) {
         number.addEventListener('click', () => {
             inputNum += number.id;
+            console.log(inputNum);
             display.textContent += number.textContent;
         })
     }
@@ -88,3 +90,15 @@ clearBtn.addEventListener('click', () => {
 // Call Functions
 displayNum();
 displayOperator();
+allButtons.forEach((btn) => {
+    btn.addEventListener('mouseover', () => btn.classList.add('hover'));
+    btn.addEventListener('mouseout', () => btn.classList.remove('hover'));
+    btn.addEventListener('mousedown', () => btn.classList.add('click'));
+    btn.addEventListener('mouseup', () => btn.classList.remove('click'));
+});
+operators.forEach((btn) => {
+    btn.addEventListener('mouseover', () => btn.classList.add('right-hover'));
+    btn.addEventListener('mouseout', () => btn.classList.remove('right-hover'));
+    btn.addEventListener('mousedown', () => btn.classList.add('right-click'));
+    btn.addEventListener('mouseup', () => btn.classList.remove('right-click'));
+})
