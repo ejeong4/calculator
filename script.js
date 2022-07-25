@@ -1,13 +1,16 @@
+// Initialize Variables
 const display = document.querySelector('.display');
 const numbers = document.querySelectorAll('.buttons .number');
 const operators = document.querySelectorAll('.buttons .operator');
 const clearBtn = document.querySelector('.buttons #Clear');
 const enterBtn = document.querySelector('.buttons #equals')
+const body = document.querySelector('body');
 
-let inputNum = '';
+let inputNum;
 let inputs = [];
 let answer;
 
+// Basic Arithmetic Functions
 function add(a, b) {
     return a + b;
 }
@@ -24,6 +27,7 @@ function divide(a, b) {
     return a / b;
 }
 
+// Operate Function
 function operate(a, b, operator) {
     if (operator === 'add') return add(a, b);
     if (operator === 'multiply') return multiply(a, b);
@@ -31,61 +35,54 @@ function operate(a, b, operator) {
     if (operator === 'subtract') return subtract(a, b);
 }
 
+// Display Numbers with click
 function displayNum() {
     for (const number of numbers) {
         number.addEventListener('click', () => {
-            inputNum += number.id;
-            console.log(inputNum);
+            inputNum = number.id;
             display.textContent += number.textContent;
         })
-
     }
 }
 
+// Display Operators with click
 function displayOperator() {
     for (const op of operators) {
         op.addEventListener('click', () => {
             inputs.push(parseInt(inputNum));
+            if (inputs.length >= 3) calculate();
             inputs.push(op.id);
-            inputNum = '';
-            console.log(inputs);
-
             display.textContent += ` ${op.textContent} `;
+            console.log(inputs);
         })
-
     }
 }
 
-function clear() {
-    clearBtn.addEventListener('click', () => {
-        inputNum = '';
-        inputs = [];
-        console.log(inputs);
-        display.textContent = "";
-    })
+// Take inputed values, calculate, output
+function calculate() {
+    answer = operate(inputs[0], inputs[2], inputs[1]);
+    inputs = [];
+    inputs.push(answer);
+    display.textContent = answer;
 }
 
-function enter() {
-    enterBtn.addEventListener('click', () => {
-        console.log(inputs);
-        inputs.push(parseInt(inputNum));
+enterBtn.addEventListener('click', () => {
+    inputs.push(parseInt(inputNum));
+    calculate();
+    numbers.forEach((num) => num.disabled = true);
+    operators.forEach((op) => op.disabled = true);
+    enterBtn.disabled = true;
+});
 
-        answer = operate(inputs[0], inputs[2], inputs[1]);
-        console.log(answer);
-        if (inputs.length > 3) {
-            for (i = 4; i < inputs.length; i += 2) {
-                answer = operate(answer, inputs[i], inputs[i - 1]);
-                console.log(answer);
-            }
-        }
+// Clear Display with click
+clearBtn.addEventListener('click', () => {
+    numbers.forEach((num) => num.disabled = false);
+    operators.forEach((op) => op.disabled = false);
+    enterBtn.disabled = false;
+    inputs = [];
+    display.textContent = "";
+})
 
-        display.textContent = answer;
-        inputNum = '';
-        inputs = [];
-    })
-}
-
+// Call Functions
 displayNum();
 displayOperator();
-clear();
-enter();
