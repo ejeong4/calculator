@@ -11,6 +11,7 @@ let inputNum = "";
 let inputs = [];
 let answer;
 
+
 // Basic Arithmetic Functions
 function add(a, b) {
     return a + b;
@@ -42,7 +43,10 @@ function displayNum() {
         number.addEventListener('click', () => {
             inputNum += number.id;
             console.log(inputNum);
-            display.textContent += number.textContent;
+            if (display.textContent.length <= 7) {
+                display.textContent += number.textContent;
+            }
+            console.log(display.textContent.length)
         })
     }
 }
@@ -55,7 +59,10 @@ function displayOperator() {
             inputNum = '';
             if (inputs.length >= 3) calculate();
             inputs.push(op.id);
-            display.textContent += `${op.textContent}`;
+            if (display.textContent.length <= 7) {
+                display.textContent += `${op.textContent}`;
+            }
+            console.log(display.textContent.length)
             console.log(inputs);
         })
     }
@@ -66,7 +73,7 @@ function calculate() {
     answer = operate(inputs[0], inputs[2], inputs[1]);
     inputs = [];
     inputs.push(answer);
-    display.textContent = answer;
+    display.textContent = answer.toFixed(1);
 }
 
 enterBtn.addEventListener('click', () => {
@@ -88,8 +95,10 @@ clearBtn.addEventListener('click', () => {
 })
 
 // Call Functions
+display.textContent = '';
 displayNum();
 displayOperator();
+
 allButtons.forEach((btn) => {
     btn.addEventListener('mouseover', () => btn.classList.add('hover'));
     btn.addEventListener('mouseout', () => btn.classList.remove('hover'));
