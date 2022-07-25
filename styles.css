@@ -31,6 +31,26 @@
     }
 }
 
+@keyframes slide-down {
+    0% {
+        margin-top: -400px;
+        opacity: 50%;
+    }
+    100% {
+        margin-top: 100px;
+        opacity: 100%;
+    }
+}
+
+@keyframes slide-in {
+    0% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -48,6 +68,7 @@ h1 {
     font-family: 'avenir-bold', sans-serif;
     color: #e0e0e0;
     text-decoration: underline #faf1ca;
+    animation: slide-in 3s;
 }
 
 .calculator {
@@ -59,6 +80,7 @@ h1 {
     background-color: rgb(255, 255, 255);
     padding: 10px;
     box-shadow: 0 8px 15px 1px #e2e2e2;
+    animation: slide-down 1.5s;
 }
 
 .display {
